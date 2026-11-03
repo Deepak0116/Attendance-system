@@ -8,3 +8,4 @@ backend/data/*.xlsx
 backend/data/*.lock
 backend/data/*.txt
 LOGIN_NOTES.txt
+deploy/.env

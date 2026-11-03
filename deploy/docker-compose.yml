@@ -1,0 +1,14 @@
+services:
+  app:
+    build: ..
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:10000:10000"      # only Caddy (HTTPS) talks to it
+    environment:
+      PORT: "10000"
+      ATTENDANCE_DATA_FILE: /data/attendance_system.xlsx
+      JWT_SECRET: ${JWT_SECRET}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD}
+      COMPANY_NAME: Asten Labs
+    volumes:
+      - /opt/attendance-data:/data   # Excel file, report key and notes live here; back this folder up
