@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: attendance-system
+    runtime: docker
+    plan: starter            # a disk needs a paid plan; keep exactly ONE instance
+    healthCheckPath: /api/health
+    disk:
+      name: attendance-data
+      mountPath: /var/data   # the Excel file, report key and notes live here and survive redeploys
+      sizeGB: 1
+    envVars:
+      - key: ATTENDANCE_DATA_FILE
+        value: /var/data/attendance_system.xlsx
+      - key: JWT_SECRET
+        generateValue: true
+      - key: ADMIN_PASSWORD
+        sync: false          # you type this in the Render dashboard; it is the first admin login
+      - key: COMPANY_NAME
+        value: Asten Labs

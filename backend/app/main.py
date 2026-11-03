@@ -1,11 +1,14 @@
 import asyncio
 import logging
+import os
 from contextlib import asynccontextmanager
+from pathlib import Path
 
 from fastapi import FastAPI, Request
 from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse
+from fastapi.responses import FileResponse, JSONResponse
+from fastapi.staticfiles import StaticFiles
 
 from app import config, seed
 from app.routers import attendance, auth, employees, misc, requests, wfh_location
@@ -68,3 +71,18 @@ for r in (auth.router, employees.router, attendance.router, requests.leave_route
 @app.get("/api/health", tags=["System"])
 def health():
     return {"status": "ok", "company": config.COMPANY_NAME}
+
+
+# Hosted mode: when the built website (frontend/dist) is present, serve it from this same server.
+DIST = Path(os.getenv("FRONTEND_DIST", config.BASE_DIR.parent / "frontend" / "dist"))
+if (DIST / "index.html").is_file():
+    app.mount("/assets", StaticFiles(directory=DIST / "assets"), name="assets")
+
+    @app.get("/{path:path}", include_in_schema=False)
+    def website(path: str):
+        if path.startswith("api/"):
+            return JSONResponse(status_code=404, content={"detail": "Not found"})
+        target = (DIST / path).resolve()
+        if path and target.is_file() and DIST.resolve() in target.parents:
+            return FileResponse(target)
+        return FileResponse(DIST / "index.html")

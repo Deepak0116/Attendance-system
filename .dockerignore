@@ -1,0 +1,9 @@
+.git
+.venv
+node_modules
+dist
+__pycache__
+*.pyc
+.pytest_cache
+backend/data
+LOGIN_NOTES.txt
