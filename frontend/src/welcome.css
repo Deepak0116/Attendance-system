@@ -1,0 +1,41 @@
+/* Compact startup popup (/welcome). Opened in a small app-style window at computer start-up. */
+.wl-page { height: 100vh; height: 100dvh; overflow: auto; display: grid; place-items: center; background: #dfe8f5; padding: 12px; }
+.wl-card { width: 340px; max-width: 100%; background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0 14px 40px rgba(27, 31, 75, .25); }
+.wl-top { background: #1b1f4b; padding: 10px 16px; display: flex; align-items: center; justify-content: space-between; color: #c8d0ee; font-size: 12px; }
+.wl-body { padding: 16px 18px 14px; display: flex; flex-direction: column; gap: 8px; align-items: flex-start; }
+.wl-body > * { max-width: 100%; }
+.wl-hi { font-size: 20px; font-weight: 800; margin: 0; color: var(--text); }
+.wl-sub { margin: 0 0 4px; color: var(--muted); font-size: 12.5px; }
+.wl-say { margin: 2px 0 6px; font-size: 13.5px; line-height: 1.5; }
+.wl-say.comp { color: #158a49; font-weight: 600; }
+.wl-chip { font-size: 11.5px; font-weight: 700; padding: 3px 11px; border-radius: 999px; background: #eef2f7; color: #52617d; }
+.wl-chip.early, .wl-chip.ok { background: var(--green-soft); color: #158a49; }
+.wl-chip.on_time { background: var(--blue-soft); color: #1d4ed8; }
+.wl-chip.late, .wl-chip.warn { background: var(--amber-soft); color: #8a5a00; }
+.wl-chip.wfh { background: var(--purple-soft); color: var(--purple); }
+.wl-acts { display: flex; gap: 8px; width: 100%; margin-top: 4px; }
+.wl-acts .btn { flex: 1; padding: 9px 10px; }
+.wl-acts .btn-ghost { flex: 0 0 auto; }
+.wl-foot { margin: 6px 0 0; font-size: 11.5px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 8px; width: 100%; }
+.wl-foot span { font-weight: 700; color: var(--blue); }
+.wl-body .wl-switch { font-size: 11.5px; color: var(--muted); font-weight: 500; }
+.wl-body .btn.block { width: 100%; }
+.wl-body .field { width: 100%; }
+
+/* Simplified start-up window: greeting, name, one button */
+.wl-top { justify-content: center; padding: 12px 16px; }
+.wl-body.wl-center { align-items: center; text-align: center; gap: 6px; padding: 22px 22px 26px; }
+.wl-center .wl-hi { font-size: 20px; font-weight: 500; color: var(--muted); }
+.wl-center .wl-name { margin: 0 0 12px; font-size: 34px; font-weight: 800; line-height: 1.1; color: var(--text); }
+.wl-center .wl-btn { width: 100%; margin-top: 4px; }
+.wl-center .wl-say { margin: 0 0 6px; color: var(--text); font-size: 14px; }
+.wl-ok { display: flex; align-items: center; gap: 8px; margin: 0 0 4px; font-weight: 700; color: #158a49; }
+.wl-center .wl-hi { font-size: 14px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--blue); }
+.wl-center .wl-name { margin-bottom: 8px; }
+.wl-words { margin: 0 0 14px; max-width: 280px; font-size: 15px; line-height: 1.5; font-style: italic; color: var(--text); }
+
+/* Same look as the dashboard welcome card: left aligned heading, "Thought for today", the thought, then the button */
+.wl-body.wl-center { align-items: flex-start; text-align: left; gap: 4px; }
+.wl-title { margin: 0 0 6px; font-size: 24px; font-weight: 800; line-height: 1.2; color: var(--text); }
+.wl-center .wl-words { margin: 0 0 14px; max-width: none; font-size: 15px; font-style: normal; line-height: 1.5; }
+.wl-center .wl-btn, .wl-center .btn.block { width: 100%; }
